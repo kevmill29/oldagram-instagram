@@ -29,13 +29,15 @@ const posts = [
         likes: 152,
         hasUserliked : false
     }
-]
-
-
+];
 
   
-    const postContainer = document.getElementById("posts");
-  const post = (posts) => {
+  
+  
+   function renderPosts() {
+    for (let i = 0; i < posts.length; i++) {
+     const postContainer = document.getElementById("posts");
+       const post = (posts) => {
     return `
       <section class="post">
           <div class="post-div">
@@ -61,18 +63,15 @@ const posts = [
                 <p>
                     <strong>${posts.username}</strong>  ${posts.comment}
                     </p>
-            </div>
+                </div>
       </section>
 
-      `;
+      `;}
+      postContainer.innerHTML += post(posts[i]);   
+
   };
-  
-  
-   function renderPosts() {
-    for (let i = 0; i < posts.length; i++) {
-      postContainer.innerHTML += post(posts[i]);
     }
-  }
+  
   
   renderPosts();
   
@@ -122,5 +121,5 @@ const posts = [
         posts[i].hasUserLiked = false;
       }
     });
-  }
+  };
  
