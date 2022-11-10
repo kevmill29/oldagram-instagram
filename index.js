@@ -1,4 +1,4 @@
-const posts = [
+const post = [
     {
         name: "Vincent van Gogh",
         username: "vincey1853",
@@ -6,8 +6,7 @@ const posts = [
         avatar: "images/avatar-vangogh.jpg",
         post: "images/post-vangogh.jpg",
         comment: "just took a few mushrooms lol",
-        likes: 21,
-        hasUserliked : false    
+        likes: 21
     },
     {
         name: "Gustave Courbet",
@@ -16,106 +15,111 @@ const posts = [
         avatar: "images/avatar-courbet.jpg",
         post: "images/post-courbet.jpg",
         comment: "i'm feelin a bit stressed tbh",
-        likes: 4,
-        hasUserliked : false    
+        likes: 4
     },
-        {
+    {
         name: "Joseph Ducreux",
         username: "jd1735",
         location: "Paris, France",
         avatar: "images/avatar-ducreux.jpg",
         post: "images/post-ducreux.jpg",
         comment: "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
-        likes: 152,
-        hasUserliked : false
+        likes: 152
     }
-];
- const postContainer = document.getElementById("posts");
+]
 
-  
-  
-   function renderPosts() {
-    for (let i = 0; i < posts.length; i++) {
-        postContainer.innerHTML += `
-      <section class="post">
-          <div class="post-div">
-              <img src="${posts.avatar}" class="avatar" />
-              <div class="user-detail-container">
-                  <p class="user-name">${posts.name}</p>
-                  <p class="location">${posts.location}</p>
-              </div>
-          </div>
-          <div class="img-div">
-            <img src="${posts.post}" class="post-img" name="${posts.username}">
-          </div> 
-          <div class="comment-section">
-              <img src="images/icon-heart.png" class="btn-img" id="like" name="${posts.username}">
-              <img src="images/icon-comment.png" class="btn-img">
-              <img src="images/icon-dm.png" class="btn-img">
-          </div>
-      
-               <div class="post-btm">
-                <div class="post-btm-likes">
-                    <span class="post-likes likes" id="like-${posts.username}">${posts.likes} likes</span>
+// Rendering posts
+
+const main = document.querySelector("main")
+
+function renderPosts() {
+    let postDOM = ``
+
+    for (let i = 0; i < post.length; i++) {
+        postDOM += `
+        <section>
+            <div class="container">
+                <div class="user-info">
+                    <img src="${post[i].avatar}" alt="${post[i].name} avatar" class="user-avatar-img">
+                    <div>
+                        <p class="bold-text" id="user-info">
+                            ${post[i].name}
+                            <span class="small-text">${post[i].location}</span>
+                        </p>
+                    </div>
                 </div>
-                <p>
-                    <strong>${posts.username}</strong>  ${posts.comment}
+                
+                <img src="${post[i].post}" alt="${post[i].name} portrait post" class="user-post"
+                id="${post[i].username}-post">
+                
+                <div class="post-interactions">
+                    <div class="interactions-imgs-wrapper">
+                        <img src="images/icon-heart.png" class="interaction-img like-img" 
+                        id="${post[i].username}-likebtn">
+                        <img src="images/icon-comment.png" class="interaction-img">
+                        <img src="images/icon-dm.png" class="interaction-img">
+                    </div>
+                    <p class="bold-text" id="${post[i].username}-likes">${post[i].likes} likes</p>
+                    <p class="small-text" id="user-commment">
+                        <span class="bold-text">${post[i].username}</span>
+                        ${post[i].comment}
                     </p>
                 </div>
-      </section>
+            </div>
+        </section>
+        `
+    }
 
-      `
-    }}
+    main.innerHTML = postDOM
+}
 
-  
-  
-  renderPosts();
-  
-  const likeBtns = document.querySelectorAll("#like");
-  
-  for (let i = 0; i < likeBtns.length; i++) {
-    likeBtns[i].addEventListener("click", function () {
-      const likesEl = document.getElementById("like-" + likeBtns[i].name);
-      if(!posts[i].hasUserLiked) {
-        posts[i].likes += 1;
-        likeBtns[i].setAttribute("src","images/icon-heart-filled.png");
-        likesEl.textContent = posts[i].likes + " likes";
-        posts[i].hasUserLiked = true;
-        likeBtns[i].classList.add("like-animation");
-        setTimeout(function () {
-          likeBtns[i].classList.remove("like-animation");
-        },300);
-      }
-      else {
-        posts[i].likes -= 1;
-        likeBtns[i].setAttribute("src","images/icon-heart.png");
-        likesEl.textContent = posts[i].likes + " likes";
-        posts[i].hasUserLiked = false;
-      }
-    });
-  }
-  
-  const postImgs = document.querySelectorAll(".post-img");
-  
-   for (let i = 0; i < likeBtns.length; i++) {
-    postImgs[i].addEventListener('dblclick', function () {
-      const likesEl = document.getElementById("like-" + postImgs[i].name);
-      if(!posts[i].hasUserLiked) {
-        posts[i].likes += 1;
-        likeBtns[i].setAttribute("src","images/icon-heart-filled.png");
-        likesEl.textContent = posts[i].likes + " likes";
-        posts[i].hasUserLiked = true;
-        likeBtns[i].classList.add("like-animation");
-        setTimeout(function () {
-          likeBtns[i].classList.remove("like-animation");
-        },300);
-      }
-      else {
-        posts[i].likes -= 1;
-        likeBtns[i].setAttribute("src","images/icon-heart.png");
-        likesEl.textContent = posts[i].likes + " likes";
-        posts[i].hasUserLiked = false;
-      }
-    });
-  };
- 
+renderPosts()
+
+//Increasing/decreasing likes with both 
+//post double click and heart icon click
+
+const postIdsDOM = []
+const likeBtnDOM = []
+const likesIdsDOM = []
+const likesCheck = []
+
+for (let i = 0; i < post.length; i++) {
+    postIdsDOM.push(document.getElementById(`${post[i].username}-post`))
+    likesIdsDOM.push(document.getElementById(`${post[i].username}-likes`))
+    likeBtnDOM.push(document.getElementById(`${post[i].username}-likebtn`))
+    likesCheck.push(post[i].likes)
+}
+
+postIdsDOM[0].addEventListener("dblclick", function(){
+    increaseLikes(0)
+})
+
+postIdsDOM[1].addEventListener("dblclick", function(){
+    increaseLikes(1)  
+})
+
+postIdsDOM[2].addEventListener("dblclick", function(){
+    increaseLikes(2)
+})
+
+likeBtnDOM[0].addEventListener("click", function(){
+    increaseLikes(0)
+})
+
+likeBtnDOM[1].addEventListener("click", function(){
+    increaseLikes(1)  
+})
+
+likeBtnDOM[2].addEventListener("click", function(){
+    increaseLikes(2)
+})
+
+function increaseLikes(i) {
+    if (post[i].likes === likesCheck[i]){
+        post[i].likes += 1
+        likesIdsDOM[i].innerHTML = `${post[i].likes} likes`
+    } else if (post[i].likes === likesCheck[i] + 1) {
+        post[i].likes -= 1
+        likesIdsDOM[i].innerHTML = `${post[i].likes} likes`
+    }
+}
