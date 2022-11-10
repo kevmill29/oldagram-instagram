@@ -31,14 +31,6 @@ const posts = [
     }
 ]
 
-let timeline = document.getElementById("timeline-div")
-let likeBtn = document.querySelectorAll("likes") 
-
-
-
-
-//renderImg()
-
 
 
   
