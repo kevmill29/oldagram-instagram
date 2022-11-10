@@ -30,15 +30,13 @@ const posts = [
         hasUserliked : false
     }
 ];
+ const postContainer = document.getElementById("posts");
 
-  
   
   
    function renderPosts() {
     for (let i = 0; i < posts.length; i++) {
-     const postContainer = document.getElementById("posts");
-       const post = (posts) => {
-    return `
+        postContainer.innerHTML += `
       <section class="post">
           <div class="post-div">
               <img src="${posts.avatar}" class="avatar" />
@@ -66,11 +64,9 @@ const posts = [
                 </div>
       </section>
 
-      `;}
-      postContainer.innerHTML += post(posts[i]);   
+      `
+    }}
 
-  };
-    }
   
   
   renderPosts();
