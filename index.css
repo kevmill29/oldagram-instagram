@@ -1,115 +1,93 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
 }
 
-html, body {
-    margin: 0 auto;
-    padding:0;
-    background-color: #C6C6C6;
+html,
+body {
+    margin: 0;
+    padding: 0;
     font-size: 13px;
-    font-family: 'Source Sans Pro', sans-serif;
-    
+    font-family: 'Source Sans Pro', sans-serif;   
 }
 
-/* General Styles Section */
+/* General Styling */
 
- .nav {
-    display:flex; 
+header{
+    display: flex;
     justify-content: space-between;
-    width: 375px;
-    height: 67px;
-   margin:0px auto;
-   padding: 16px 16px 16px 16px; 
+    align-content: center;
     border-bottom: 2px solid #C6C6C6;
     background-color: white;
-    
+    padding: 16px;
+    margin: 0 auto; 
+    width: 375px; 
 }
 
-
- .container, .post-div{
-    background-color: white; 
-    max-width: 375px;
-    
+.container{
+    width: 375px;
+    margin:auto;
+    padding: 0;
 }
 
-.container{ 
-    margin: 0px auto 20px auto;
-    padding: 10px 0 0 0;
-}
-.post{
-    margin: 0px auto 15px auto;
+.avatar,
+.logo, 
+.postdiv,
+.post-img{
+    margin:0;
     padding: 0; 
 }
-.post-div{
-    display: flex; 
-    margin: 0;
-    padding:0; 
-    height: 50px; 
-}
 
- .logo{
-    width: 127px; 
-    max-width: 30%; 
-    height: 45px;
-    padding:0;
-    margin:0;
-}
-.post-div .avatar{
-    margin-right: 10px;
-}
 .avatar{
-    width: 34px;
-    height: 34px;
-    border-radius: 50% ; 
-    margin:0 0 10px 10px;
-    padding: 0;
+height: 34px;
+width: 34px;
+border-radius: 50%; 
 }
 
-.btn-img {
-    width: 23.02px;
-    height: 22.13px;
-    margin: 21px 20px 11px 10px;
-    padding: 0;
+.user-loc img{
+    margin-right: 7px;
 }
 
-.btn-img:hover{
-    opacity: 0.5;
+.logo{
+  width: 127px;
+  max-width: 30%;  
 }
 
-main .img-div img{
-   padding:0; 
-    width: 100%;
-    margin: 0;
+.user-loc{
+     margin: auto 0; 
+    padding: 10px; 
 }
-.post-btm-likes{
-    margin-bottom: 12px;
-    margin-top: 0px; 
+
+.user-info{
+    display:inline-block; 
+}
+
+.post-img{
+  width: 100%;  
+ 
+}
+.icon{
+    width: 23.3px;
+    height:22.13px;
+    margin:21px 20px 11px 10px;
+    padding:0; 
+}
+.icon:hover,
+.icon:active{
+ opacity: 0.5;
+}
+.icon:focus,
+.icon:active{
+    filter: invert(12%) sepia(83%) saturate(4217%) hue-rotate(352deg) brightness(110%) contrast(87%);
+    opacity: 1;
+}
+
+
+p{
    
+    
 }
-
-.post-btm{
-    margin:0; 
-    padding-top:0;
-    padding-bottom: 16px;
-    border-bottom: 25px solid #C6C6C6;
-    padding-left: 10px; 
-}
-
-.post-likes{
-    font-weight: 700;
-}
-
-/* Typology Section */
-
-p {
-    font-size: 12px;
-    font-weight: 400;
-    margin:0;
-}
-p .user-name {
-    display: block;
-    font-weight: 700;
+strong{
     font-size: 13px; 
 }

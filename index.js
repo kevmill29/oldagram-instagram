@@ -1,4 +1,4 @@
-const post = [
+const posts = [
     {
         name: "Vincent van Gogh",
         username: "vincey1853",
@@ -17,7 +17,7 @@ const post = [
         comment: "i'm feelin a bit stressed tbh",
         likes: 4
     },
-    {
+        {
         name: "Joseph Ducreux",
         username: "jd1735",
         location: "Paris, France",
@@ -28,49 +28,37 @@ const post = [
     }
 ]
 
-// Rendering posts
+const tlDOM = document.getElementById("tl-div")
 
-const main = document.querySelector("main")
-
-function renderPosts() {
-    let postDOM = ``
-
-    for (let i = 0; i < post.length; i++) {
-        postDOM += `
-        <section>
-            <div class="container">
-                <div class="user-info">
-                    <img src="${post[i].avatar}" alt="${post[i].name} avatar" class="user-avatar-img">
-                    <div>
-                        <p class="bold-text" id="user-info">
-                            ${post[i].name}
-                            <span class="small-text">${post[i].location}</span>
-                        </p>
-                    </div>
-                </div>
-                
-                <img src="${post[i].post}" alt="${post[i].name} portrait post" class="user-post"
-                id="${post[i].username}-post">
-                
-                <div class="post-interactions">
-                    <div class="interactions-imgs-wrapper">
-                        <img src="images/icon-heart.png" class="interaction-img like-img" 
-                        id="${post[i].username}-likebtn">
-                        <img src="images/icon-comment.png" class="interaction-img">
-                        <img src="images/icon-dm.png" class="interaction-img">
-                    </div>
-                    <p class="bold-text" id="${post[i].username}-likes">${post[i].likes} likes</p>
-                    <p class="small-text" id="user-commment">
-                        <span class="bold-text">${post[i].username}</span>
-                        ${post[i].comment}
-                    </p>
-                </div>
-            </div>
-        </section>
-        `
-    }
-
-    main.innerHTML = postDOM
+function renderPosts(){
+  let postTL = ""
+  for (let i=0; i < posts.length; i++){
+    postTL += `
+<section>
+  <div class="post-div">
+    <div class="user-loc">
+      <img class="avatar" src="${posts[i].avatar}"/>
+        <p class="user-info">
+          <span><strong>${posts[i].name}</strong></span><br>
+          <span>${posts[i].location}</span>
+        </p>
+    </div>
+    <div "img-container">  
+      <img class="post-img" id="${posts[i].username}-post" src="${posts[i].post}">
+    </div>
+    <div class="button-sect">
+      <img id="${posts[i].username}-likebtn" src="images/icon-heart.png" alt="like this post" class="icon">
+      <img src="images/icon-comment.png" alt="comment on this post" class="icon">
+      <img src="images/icon-dm.png" alt="share this post" class="icon">
+    </div>
+    <div class="post-btm">
+      <p id="${posts[i].username}-likes"><strong>${posts[i].likes} likes</strong><p><br>
+      <p><strong>${posts[i].username}</strong> ${posts[i].comment}<p>
+  </div>
+</section>
+       `
+  }
+  tlDOM.innerHTML = postTL
 }
 
 renderPosts()
@@ -83,11 +71,15 @@ const likeBtnDOM = []
 const likesIdsDOM = []
 const likesCheck = []
 
-for (let i = 0; i < post.length; i++) {
-    postIdsDOM.push(document.getElementById(`${post[i].username}-post`))
-    likesIdsDOM.push(document.getElementById(`${post[i].username}-likes`))
-    likeBtnDOM.push(document.getElementById(`${post[i].username}-likebtn`))
-    likesCheck.push(post[i].likes)
+
+
+
+
+for (let i = 0; i < posts.length; i++) {
+    postIdsDOM.push(document.getElementById(`${posts[i].username}-post`))
+    likesIdsDOM.push(document.getElementById(`${posts[i].username}-likes`))
+    likeBtnDOM.push(document.getElementById(`${posts[i].username}-likebtn`))
+    likesCheck.push(posts[i].likes)
 }
 
 postIdsDOM[0].addEventListener("dblclick", function(){
@@ -113,13 +105,12 @@ likeBtnDOM[1].addEventListener("click", function(){
 likeBtnDOM[2].addEventListener("click", function(){
     increaseLikes(2)
 })
-
 function increaseLikes(i) {
-    if (post[i].likes === likesCheck[i]){
-        post[i].likes += 1
-        likesIdsDOM[i].innerHTML = `${post[i].likes} likes`
-    } else if (post[i].likes === likesCheck[i] + 1) {
-        post[i].likes -= 1
-        likesIdsDOM[i].innerHTML = `${post[i].likes} likes`
+    if (posts[i].likes === likesCheck[i]){
+        posts[i].likes += 1
+        likesIdsDOM[i].innerHTML = `<strong>${posts[i].likes} likes</strong>`
+    } else if (posts[i].likes === likesCheck[i] + 1) {
+        posts[i].likes -= 1
+        likesIdsDOM[i].innerHTML = `<strong>${posts[i].likes} likes</strong>`
     }
 }
